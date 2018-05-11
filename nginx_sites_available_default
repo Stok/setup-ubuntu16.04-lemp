@@ -17,13 +17,6 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
-	location = /favicon.ico { log_not_found off; access_log off; }
-	location = /robots.txt { log_not_found off; access_log off; allow all; }
-	location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
-		expires max;
-		log_not_found off;
-	}
-
 	# SSL configuration
 	#
 	# listen 443 ssl default_server;
@@ -50,8 +43,7 @@ server {
 	location / {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
-		#try_files $uri $uri/ =404;
-		try_files $uri $uri/ /index.php$is_args$args;
+		try_files $uri $uri/ =404;
 	}
 
 	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
