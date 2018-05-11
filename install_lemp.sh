@@ -18,7 +18,7 @@ sudo systemctl restart php7.0-fpm
 
 # Configure nginx so it uses PHP
 ip=$(ifconfig eth0 | grep "inet adr" | cut -d ':' -f 2 | cut -d ' ' -f 1)
-cat ./nginx_sites_available_default | sed "s/server_name _;/server_name $ip;/g" > ./nginx_sites_available_default
+cat ./nginx_sites_available_default | sed "s/server_name _;/server_name $ip;/g" | sudo tee ./nginx_sites_available_default > /dev/null
 sudo chown root ./nginx_sites_available_default
 sudo chgrp root ./nginx_sites_available_default
 sudo cp ./nginx_sites_available_default /etc/nginx/sites-available/default
